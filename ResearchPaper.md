@@ -1,32 +1,34 @@
 Katharina Kristensen
-Research Assignment/Presentation
+
+#Research Assignment/Presentation
+
 4/22/15
 
 
 For my game, I was developing a portal system that included four distant "rooms" and a central hub.  In each of these rooms was a doorframe with an active portal (transporting the player to an empty object near the corresponding door in the hub).  What I needed was for the portal in the hub to only activate once the player had transported to it from the portal in the corresponding "room."  I already had my "PortalSpawn" script as such:
 
-#pragma strict
+	#pragma strict
 
-var makeGate = true;
+	var makeGate = true;
 
-var gate : GameObject;
+	var gate : GameObject;
 
-function OnTriggerEnter (other : Collider) {
+	function OnTriggerEnter (other : Collider) {
 
-	if (makeGate == true){
+		if (makeGate == true){
 		Instantiate (gate);
 		makeGate = false;
-}
-}
+	}
+	}
 
 However, the issue I was running into was that Unity was not allowing me to drag an object into the "gate" box of the script (to assign the "transform" variable), which meant that while the gate would spawn, it would not lead anywhere.
 
 The Unity Forum offered two solutions.  One was to add the following to a script:
 
-public GameObject anObject;
- void Awake () {
-     anObject = GameObject.Find("in-game_object_name");    
- }
+	public GameObject anObject;
+ 	void Awake () {
+    	 anObject = GameObject.Find("in-game_object_name");    
+	 }
 
 (http://answers.unity3d.com/questions/264742/putting-gameobject-to-the-script-of-prefab.html)
 
